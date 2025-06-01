@@ -5,7 +5,8 @@ import ctypes
 from typing import Optional, Tuple
 
 import keyboard
-import pytesseract
+import easyocr
+import numpy as np
 from PIL import ImageGrab, ImageOps, Image
 import tkinter as tk
 from llama_cpp import Llama
@@ -81,7 +82,7 @@ class OverlayWindow(threading.Thread):
         self.root = tk.Tk()
         self.root.overrideredirect(True)
         self.root.attributes("-topmost", True)
-        self.root.attributes("-alpha", 0.7)
+        self.root.attributes("-alpha", 0.5)
         x1, y1, x2, y2 = self.region
         self.root.geometry(f"{x2 - x1}x{y2 - y1}+{x1}+{y1}")
         self.root.configure(bg="black")
@@ -110,6 +111,7 @@ class ScreenTranslator:
         self.overlay: Optional[OverlayWindow] = None
         self.enabled = False
         self.llm = Llama(model_path=cfg.llm_model_path, n_gpu_layers=cfg.llm_gpu_layers, main_gpu=cfg.llm_gpu_index)
+        self.reader = easyocr.Reader(["en"], gpu=False)
         keyboard.add_hotkey(cfg.hotkey_select_region, self.set_ocr_region)
         keyboard.add_hotkey(cfg.hotkey_set_output_region, self.set_output_region)
         keyboard.add_hotkey(cfg.hotkey_toggle_translation, self.toggle)
@@ -140,7 +142,8 @@ class ScreenTranslator:
     def extract_text(self, img: Image.Image) -> str:
         gray = ImageOps.grayscale(img)
         binary = gray.point(lambda p: 255 if p > 200 else 0)
-        return pytesseract.image_to_string(binary, lang="eng").strip()
+        results = self.reader.readtext(np.array(binary), detail=0)
+        return " ".join(results).strip()
 
     def translate(self, text: str) -> str:
         prompt = self.cfg.llm_prompt_template.format(text=text)
