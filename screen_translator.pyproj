@@ -24,11 +24,6 @@
   <ItemGroup>
     <Compile Include="config.py" />
     <Compile Include="main.py" />
-    <Compile Include="ocr\ocr_processor.py" />
-    <Compile Include="translator\translator.py" />
-    <Compile Include="ui\overlay_window.py" />
-    <Compile Include="utils\hotkeys.py" />
-    <Compile Include="utils\screenshot.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="models\mistral-7b-instruct-v0.2.Q6_K.gguf" />
