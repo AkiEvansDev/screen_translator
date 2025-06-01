@@ -45,7 +45,8 @@ class TranslationOverlay:
         """Stop the overlay UI."""
         self._running = False
         if self._root:
-            self._root.quit()
+            # Ensure Tk operations run in the UI thread
+            self._root.after(0, self._root.quit)
         if self._thread:
             self._thread.join()
             logging.info("Translation overlay stopped.")
@@ -66,11 +67,11 @@ class TranslationOverlay:
         self._label = tk.Label(
             self._root,
             text="",
-            font=("Arial", 18),
+            font=(self.config.default_overlay_font, self.config.default_overlay_font_size),
             fg="white",
             bg="black",
             justify="left",
-            wraplength=800
+            wraplength=self.config.overlay_wrap_length,
         )
         self._label.pack(expand=True, fill="both")
 

@@ -28,7 +28,7 @@ def main():
         ocr = OCRProcessor(config=config, output_queue=ocr_text_queue)
         translator = LLMTranslator(config=config, input_queue=ocr_text_queue, output_queue=translated_text_queue)
         overlay = TranslationOverlay(config=config, input_queue=translated_text_queue)
-        hotkeys = HotkeyManager(config=config, ocr=ocr, overlay=overlay)
+        hotkeys = HotkeyManager(config=config, ocr=ocr, overlay=overlay, translator=translator)
 
         # Start hotkey listener
         hotkey_thread = threading.Thread(target=hotkeys.listen, daemon=True)
