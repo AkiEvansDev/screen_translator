@@ -26,7 +26,7 @@ class LLMTranslator:
 
         self._running = False
         self._thread: Optional[threading.Thread] = None
-        self.llm = self._load_model()
+        self.llm: Optional[Llama] = None
 
     def _load_model(self) -> Llama:
         """Load LLM model with GPU configuration."""
@@ -43,6 +43,8 @@ class LLMTranslator:
     def start(self) -> None:
         """Start the translation thread."""
         if not self._running:
+            if self.llm is None:
+                self.llm = self._load_model()
             self._running = True
             self._thread = threading.Thread(target=self._run, daemon=True)
             self._thread.start()

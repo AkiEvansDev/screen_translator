@@ -4,17 +4,16 @@ screen region selection and toggling translation mode.
 """
 
 import logging
-import threading
 import keyboard
 
-from typing import Callable
 from config import Config
+from translator.translator import LLMTranslator
 from utils.screenshot import select_screen_region
 
 class HotkeyManager:
     """Manages hotkeys for the Screen Translator app."""
 
-    def __init__(self, config: Config, ocr, overlay):
+    def __init__(self, config: Config, ocr, overlay, translator):
         """
         Initialize the hotkey manager.
 
@@ -22,10 +21,12 @@ class HotkeyManager:
             config (Config): App configuration.
             ocr (OCRProcessor): OCR component.
             overlay (TranslationOverlay): UI component.
+            translator (LLMTranslator): Translation component.
         """
         self.config = config
         self.ocr = ocr
         self.overlay = overlay
+        self.translator = translator
         self.translation_enabled = False
 
     def listen(self) -> None:
@@ -57,9 +58,11 @@ class HotkeyManager:
         self.translation_enabled = not self.translation_enabled
         if self.translation_enabled:
             self.ocr.start()
+            self.translator.start()
             self.overlay.start()
             logging.info("Translation enabled.")
         else:
             self.ocr.stop()
+            self.translator.stop()
             self.overlay.stop()
             logging.info("Translation disabled.")
