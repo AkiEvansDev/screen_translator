@@ -10,9 +10,9 @@ class Config:
     ocr_interval: float = 1.5  # Seconds between OCR scans
 
     # === Hotkey Bindings ===
-    hotkey_select_region: str = "ctrl+alt+r"
-    hotkey_set_output_region: str = "ctrl+alt+o"
-    hotkey_toggle_translation: str = "ctrl+alt+t"
+    hotkey_select_region: str = "ctrl+alt+1"
+    hotkey_set_output_region: str = "ctrl+alt+2"
+    hotkey_toggle_translation: str = "ctrl+alt+3"
 
     # === LLM Settings ===
     llm_model_path: str = "./models/mistral-7b-instruct-v0.2.Q6_K.gguf"
