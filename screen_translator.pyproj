@@ -4,8 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>0ef2d0a9-d6f9-4f6f-8bfc-85dedc5f37ed</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>
-    </StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -26,16 +25,19 @@
     <Compile Include="config.py" />
     <Compile Include="main.py" />
     <Compile Include="ocr\ocr_processor.py" />
+    <Compile Include="tests\test_hotkeys.py" />
     <Compile Include="translator\translator.py" />
     <Compile Include="ui\overlay_window.py" />
     <Compile Include="utils\hotkeys.py" />
     <Compile Include="utils\screenshot.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="models\mistral-7b-instruct-v0.2.Q6_K.gguf" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="models\" />
+    <Folder Include="tests\" />
     <Folder Include="utils\" />
     <Folder Include="ui\" />
     <Folder Include="translator\" />

@@ -3,8 +3,6 @@ Application configuration for paths, hotkeys, and runtime parameters.
 """
 
 from dataclasses import dataclass
-from typing import Literal
-
 
 @dataclass
 class Config:
@@ -17,7 +15,7 @@ class Config:
     hotkey_toggle_translation: str = "ctrl+alt+t"
 
     # === LLM Settings ===
-    llm_model_path: str = "./models/mistral-7b.gguf"
+    llm_model_path: str = "./models/mistral-7b-instruct-v0.2.Q6_K.gguf"
     llm_gpu_layers: int = 35
     llm_gpu_index: int = 1  # Targeting second GPU (GPU:1)
     llm_prompt_template: str = "Translate the following text to Russian:\n\n{text}\n\nTranslation:"
