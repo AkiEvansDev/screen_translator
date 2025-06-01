@@ -1,0 +1,5 @@
+Pillow
+pytesseract
+keyboard
+llama-cpp-python>=0.2.26
+pywin32
