@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 env/
 /models/mistral-7b-instruct-v0.2.Q6_K.gguf
+/models/Nous-Hermes-2-Mistral-7B-DPO.Q6_K.gguf
