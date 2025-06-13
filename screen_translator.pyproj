@@ -27,14 +27,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="models\mistral-7b-instruct-v0.2.Q6_K.gguf" />
+    <Content Include="models\Nous-Hermes-2-Mistral-7B-DPO.Q6_K.gguf" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="models\" />
-    <Folder Include="utils\" />
-    <Folder Include="ui\" />
-    <Folder Include="translator\" />
-    <Folder Include="ocr\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">

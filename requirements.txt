@@ -3,3 +3,4 @@ easyocr
 keyboard
 llama-cpp-python>=0.2.26
 pywin32
+PyQt5>=5.15.0
